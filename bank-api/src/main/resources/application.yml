@@ -3,6 +3,6 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /swagger-ui.html
-    operationSorter: method
+    operations-sorter: method
   packages-to-scan: com.chanbinme.bankapi.
   paths-to-match: /api/**
