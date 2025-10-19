@@ -1,0 +1,8 @@
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationSorter: method
+  packages-to-scan: com.chanbinme.bankapi.
+  paths-to-match: /api/**

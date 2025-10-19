@@ -1,10 +1,10 @@
-package com.chanbinme.multimodulepractice
+package com.chanbinme.bank
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class MultiModulePracticeApplicationTests {
+class BankApiApplicationTests {
 
     @Test
     fun contextLoads() {
