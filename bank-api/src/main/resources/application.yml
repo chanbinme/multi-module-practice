@@ -4,5 +4,5 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     operations-sorter: method
-  packages-to-scan: com.chanbinme.bankapi.
+  packages-to-scan: com.chanbinme.bank
   paths-to-match: /api/**

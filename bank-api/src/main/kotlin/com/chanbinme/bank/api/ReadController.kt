@@ -1,6 +1,9 @@
 package com.chanbinme.bank.api
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.media.Content
+import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.GetMapping
@@ -15,6 +18,21 @@ class ReadController {
 
     private val logger = LoggerFactory.getLogger(ReadController::class.java)
 
+    @Operation(
+        summary = "Get Account",
+        description = "계좌 정보를 조회합니다.",
+        responses = [
+            ApiResponse(
+                responseCode = "200",
+                description = "Successful Operation",
+                content = [Content(mediaType = "application/json")]
+            ),
+            ApiResponse(
+                responseCode = "404",
+                description = "Account Not Found"
+            )
+        ]
+        )
     @GetMapping("/{accountNumber}")
     fun getAccount(
         @Parameter(description = "Account number",  required = true)
