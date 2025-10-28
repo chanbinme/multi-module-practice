@@ -1,4 +1,6 @@
 dependencies {
+    implementation(project(":bank-core"))
+
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-web")
 
