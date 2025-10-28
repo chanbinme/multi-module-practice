@@ -20,9 +20,19 @@ data class ApiResponse<T>(
             errCode: String? = null,
             details: Any? = null,
             path: String? = null
-        ) : ResponseEntity<ApiResponse<T>> {
+        ): ResponseEntity<ApiResponse<T>> {
             val error = Error(errCode, details, path)
             return ResponseEntity.badRequest().body(ApiResponse(false, msg, null, error))
+        }
+
+        fun <T> errorException(
+            msg: String,
+            errCode: String? = null,
+            details: Any? = null,
+            path: String? = null
+        ): ApiResponse<T> {
+            val error = Error(errCode, details, path)
+            return ApiResponse(false, msg, null, error)
         }
     }
 }
