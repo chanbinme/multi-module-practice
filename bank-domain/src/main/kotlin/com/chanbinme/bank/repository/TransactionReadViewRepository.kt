@@ -1,4 +1,4 @@
-package com.lecture.bank.domain.repository
+package com.chanbinme.bank.repository
 
 import com.chanbinme.bank.entity.TransactionReadView
 import com.chanbinme.bank.entity.TransactionType

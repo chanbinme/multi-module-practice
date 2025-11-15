@@ -6,4 +6,7 @@ dependencies {
 
     // Log
     implementation("ch.gos.logback:logback-classic:1.4.14")
+
+    // Retry
+    implementation("org.springframework.retry:spring-retry")
 }

@@ -1,5 +1,7 @@
 dependencies {
     implementation(project(":bank-core"))
+    implementation(project(":bank-domain"))
+    implementation(project(":bank-event"))
 
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-web")
