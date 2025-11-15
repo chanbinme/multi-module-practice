@@ -3,4 +3,7 @@ dependencies {
 
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // Log
+    implementation("ch.gos.logback:logback-classic:1.4.14")
 }

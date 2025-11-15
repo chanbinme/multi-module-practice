@@ -1,7 +1,7 @@
 package com.chanbinme.bank.publisher
 
 import com.chanbinme.bank.event.DomainEvent
-import com.sun.org.slf4j.internal.LoggerFactory
+import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
@@ -20,13 +20,22 @@ class EventPublisherImpl(
     private val logger = LoggerFactory.getLogger(EventPublisherImpl::class.java)
 
     override fun publish(event: DomainEvent) {
-        eventPublisher.publishEvent(event)
+        logger.info("Publishing event: $event")
+        try {
+            eventPublisher.publishEvent(event)
+        } catch (e: Exception) {
+            logger.error("Failed to publish event: $event", e)
+        }
     }
 
     @Async("taskExecutor")
     override fun publishAsync(event: DomainEvent) {
-        eventPublisher.publishEvent(event)
-    }
+        logger.info("Publishing event: $event")
+        try {
+            eventPublisher.publishEvent(event)
+        } catch (e: Exception) {
+            logger.error("Failed to publish event: $event", e)
+        }    }
 
     override fun publishAll(events: List<DomainEvent>) {
         events.forEach { event -> eventPublisher.publishEvent(event) }
