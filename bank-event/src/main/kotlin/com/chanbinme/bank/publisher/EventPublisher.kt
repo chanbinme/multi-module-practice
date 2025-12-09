@@ -1,6 +1,7 @@
 package com.chanbinme.bank.publisher
 
 import com.chanbinme.bank.event.DomainEvent
+import com.chanbinme.bank.metrics.BankMetrics
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.scheduling.annotation.Async
@@ -15,7 +16,8 @@ interface EventPublisher {
 
 @Component
 class EventPublisherImpl(
-    private val eventPublisher: ApplicationEventPublisher
+    private val eventPublisher: ApplicationEventPublisher,
+    private val metrics: BankMetrics
 ) : EventPublisher {
     private val logger = LoggerFactory.getLogger(EventPublisherImpl::class.java)
 
@@ -23,6 +25,7 @@ class EventPublisherImpl(
         logger.info("Publishing event: $event")
         try {
             eventPublisher.publishEvent(event)
+            metrics.incrementEventPublished(event::class.simpleName!! ?: "UnknownEvent")
         } catch (e: Exception) {
             logger.error("Failed to publish event: $event", e)
         }
@@ -35,7 +38,8 @@ class EventPublisherImpl(
             eventPublisher.publishEvent(event)
         } catch (e: Exception) {
             logger.error("Failed to publish event: $event", e)
-        }    }
+        }
+    }
 
     override fun publishAll(events: List<DomainEvent>) {
         events.forEach { event -> eventPublisher.publishEvent(event) }

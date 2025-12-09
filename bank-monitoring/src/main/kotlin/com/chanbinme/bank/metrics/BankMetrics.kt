@@ -43,6 +43,33 @@ class BankMetrics(
             .increment()
     }
 
+    fun incrementEventPublished(eventType: String) {
+        Counter.builder("bank.event.published")
+            .description("Number of events published")
+            .tag("type", eventType)
+            .register(meterRegistry)
+            .increment()
+    }
+
+    fun incrementEventProcessed(eventType: String) {
+        Counter.builder("bank.event.processed")
+            .description("Number of events processed")
+            .tag("type", eventType)
+            .tag("status", "success")
+            .register(meterRegistry)
+            .increment()
+    }
+
+
+    fun incrementEventFailed(eventType: String) {
+        Counter.builder("bank.event.failed")
+            .description("Number of events failed")
+            .tag("type", eventType)
+            .tag("status", "failed")
+            .register(meterRegistry)
+            .increment()
+    }
+
     /**
      * 거래 금액을 기록하는 메서드
      */

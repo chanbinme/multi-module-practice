@@ -6,12 +6,15 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name = "account_read_views")
-class AccountReadView(
+data class AccountReadView(
     @Id
     val id: Long = 0,
 
     @Column(nullable = false)
     val accountNumber: String = "",
+
+    @Column(nullable = false)
+    val accountHolderName: String = "",
 
     @Column(nullable = false, precision = 19, scale = 2)
     val balance: BigDecimal = BigDecimal.ZERO,
